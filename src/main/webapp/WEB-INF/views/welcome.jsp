@@ -25,7 +25,7 @@
 	<div class="container">
 		<div class="page-header">
 			<h1>
-				<span> National Library Demo</span>
+				<span> National Library </span>
 			</h1>
 		</div>
 		<div class="row">

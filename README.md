@@ -18,11 +18,11 @@ Steps:
 1. Open command prompt and go to the folder where you want to check out the code.
 2. Run the below command to clone the git project into your local directory:
 
-	git clone https://github.com/aravindjavadev/NationalLibraryDemo.git
+	git clone https://github.com/aravindjavadev/NLA.git
 
 3. Go into your checked out project from command prompt:
 
-	cd NationalLibraryDemo
+	cd NLA
 
 4. Run the below command to start the jetty server and bring up the project:
 

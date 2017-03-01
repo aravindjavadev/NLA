@@ -1,4 +1,4 @@
-# NationalLibraryDemo
+# NationalLibrary
 
 In this project following features are displayed:
 1. Shows list of persons

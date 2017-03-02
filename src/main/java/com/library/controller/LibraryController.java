@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.google.gson.GsonBuilder;
 import com.library.dao.UserDao;
@@ -24,8 +25,8 @@ import com.library.model.User;
 
 /**
  * 
- * Controller to handle the request from the User interface and return the requested resources
- * Returns list of Persons and Books saved in the Database
+ * Controller to handle the request from the User interface and return the
+ * requested resources Returns list of Persons and Books saved in the Database
  * 
  * @author Aravind Nadagouda
  *
@@ -40,18 +41,12 @@ public class LibraryController {
 	@RequestMapping(method = RequestMethod.GET)
 	public String libraryList(ModelMap model) {
 
-		List<User> personList = userDao.findAllPersons();
-		List<Books> booksList = userDao.findAllBooks();
-		System.out.println(personList);
-		model.addAttribute("personList", personList);
-		model.addAttribute("booksList", booksList);
 		return "welcome";
 	}
-	
+
 	/*
-	 * Returns list of BooksLended by the Person
-	 * Input: User Id
-	 * Output: List of Books
+	 * Returns list of BooksLended by the Person Input: User Id Output: List of
+	 * Books
 	 */
 
 	@RequestMapping(value = "/getBooksDetails", method = RequestMethod.GET)
@@ -60,12 +55,35 @@ public class LibraryController {
 			HttpServletResponse response, Model model) {
 
 		model.addAttribute("booksDetails", userDao.findUserByID(userId));
-
 		com.google.gson.Gson gson = new GsonBuilder().disableHtmlEscaping().create();
 		String jsonString = gson.toJson(userDao.findUserByID(userId));
 		HttpHeaders responseHeaders = new HttpHeaders();
 		responseHeaders.add("Content-Type", "text/html; charset=utf-8");
 		return new ResponseEntity<String>(jsonString, responseHeaders, HttpStatus.CREATED);
 
+	}
+
+	@RequestMapping("/books")
+	public ModelAndView bookView(ModelMap model) {
+
+		List<User> personList = userDao.findAllPersons();
+		List<Books> booksList = userDao.findAllBooks();
+		com.google.gson.Gson gson = new GsonBuilder().disableHtmlEscaping().create();
+		model.addAttribute("personList", gson.toJson(personList));
+		model.addAttribute("booksList", gson.toJson(booksList));
+
+		return new ModelAndView("books");
+	}
+
+	@RequestMapping("/persons")
+	public ModelAndView personView(ModelMap model) {
+
+		List<User> personList = userDao.findAllPersons();
+		List<Books> booksList = userDao.findAllBooks();
+		com.google.gson.Gson gson = new GsonBuilder().disableHtmlEscaping().create();
+		model.addAttribute("personList", gson.toJson(personList));
+		model.addAttribute("booksList", gson.toJson(booksList));
+
+		return new ModelAndView("persons");
 	}
 }

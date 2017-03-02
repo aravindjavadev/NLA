@@ -1,141 +1,86 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"  pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
-<html lang="en">
-<head>
-<title>National Library Demo</title>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-<script
-	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-<link rel="stylesheet"
-	href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-<spring:url value="/resources/css/library.css" var="bootstrapCss" />
-<link href="${bootstrapCss}" rel="stylesheet" />
-</head>
+<html>
+<%@include file="header.jsp"%>
 <body>
-	<div class="container">
-		<div class="page-header">
-			<h1>
-				<span> National Library </span>
-			</h1>
-		</div>
-		<div class="row">
-
-			<div class="col-md-12">
-				<div class="panel with-nav-tabs panel-primary">
-					<div class="panel-heading">
-						<ul class="nav nav-tabs">
-							<li class="active"><a href="#tab1primary" data-toggle="tab">Person
-									Details</a></li>
-							<li><a href="#tab2primary" data-toggle="tab">Books
-									Details</a></li>
-						</ul>
+	<!--  wrapper -->
+	<div id="wrapper">
+		<%@include file="nav.jsp"%>
+		
+<!-- navbar side -->
+<nav class="navbar-default navbar-static-side" role="navigation">
+	<!-- sidebar-collapse -->
+	<div class="sidebar-collapse">
+		<!-- side-menu -->
+		<ul class="nav" id="side-menu">
+			<li>
+				<!-- user image section-->
+				<div class="user-section">
+					<div class="user-section-inner">
+						<img src="resources/assets/img/user.jpg" alt="">
 					</div>
-					<div class="panel-body">
-						<div class="tab-content">
-							<div class="tab-pane fade in active" id="tab1primary">
-								<table class="table table-striped">
-									<thead>
-										<tr id="firstrow">
-											<th>Name</th>
-											<th>Email</th>
-											<th>Phone Number</th>
-											<th></th>
-										</tr>
-									</thead>
-									<tbody>
-										<c:if test="${not empty personList}">
-											<c:forEach items="${personList}" var="personList">
-												<tr>
-													<td>${personList.name}</td>
-													<td>${personList.email}</td>
-													<td>${personList.phoneNo}</td>
-													<td><input type="submit" value="Books Lended"
-														class="btn btn-info" onclick="doAjax(${personList.id});" />
-													</td>
-												</tr>
-											</c:forEach>
-										</c:if>
-									</tbody>
-								</table>
-							</div>
-							<div id="dialog" title="Book Details"></div>
-							<div class="tab-pane fade" id="tab2primary">
-
-								<table class="table table-striped">
-									<thead>
-										<tr id="firstrow">
-											<th>Author</th>
-											<th>Title</th>
-											<th>ISBN</th>
-										</tr>
-									</thead>
-									<tbody>
-										<c:if test="${not empty booksList}">
-											<c:forEach items="${booksList}" var="booksList">
-												<tr>
-													<td>${booksList.author}</td>
-													<td>${booksList.title}</td>
-													<td>${booksList.isbn}</td>
-												</tr>
-											</c:forEach>
-										</c:if>
-									</tbody>
-								</table>
-							</div>
+					<div class="user-info">
+						<div>
+							Aravind <strong>N</strong>
+						</div>
+						<div class="user-text-online">
+							<span class="user-circle-online btn btn-success btn-circle "></span>&nbsp;Online
 						</div>
 					</div>
+				</div> <!--end user image section-->
+			</li>
+			<li class="sidebar-search">
+				<!-- search section-->
+				<div class="input-group custom-search-form">
+					<input type="text" class="form-control" placeholder="Search...">
+					<span class="input-group-btn">
+						<button class="btn btn-default" type="button">
+							<i class="fa fa-search"></i>
+						</button>
+					</span>
+				</div> <!--end search section-->
+			</li>
+			<li class="selected"><a href="/"><i
+					class="fa fa-dashboard fa-fw"></i>Dashboard</a></li>
+
+			<li><a href="/persons"><i class="fa fa-dashboard fa-fw"></i>Persons
+					Details</a></li>
+			<li><a href="/books"><i class="fa fa-dashboard fa-fw"></i>Books
+					Details</a></li>
+		</ul>
+		<!-- end side-menu -->
+	</div>
+	<!-- end sidebar-collapse -->
+</nav>
+<!-- end navbar side -->
+		<!--  page-wrapper -->
+		<div id="page-wrapper">
+
+			<div class="row">
+				<!-- Page Header -->
+				<div class="col-lg-12">
+					<h1 class="page-header">Dashboard</h1>
 				</div>
+				<!--End Page Header -->
+			</div>
+
+			<div class="row">
+				<!-- Welcome -->
+				<div class="col-lg-12">
+					<div class="alert alert-info">
+						<i class="fa fa-folder-open"></i><b>&nbsp;Hello ! </b>Welcome Back
+						<b>Aravid Nadagouda  </b> <i class="fa  fa-pencil"></i>
+					</div>
+				</div>
+				<!--end  Welcome -->
 			</div>
 		</div>
+		<!-- end page-wrapper -->
+
 	</div>
-	<script type="text/javascript"> 
-	 $( function() {
-		    $( "#tabs" ).tabs();
-	} );
-	function doAjax(arg) {
-	    $.ajax({
-	        type: "GET",
-	        url: "/getBooksDetails",
-	        cache: false,
-	        dataType:"json",
-	        data: "userId="+arg,
-	        success: function (data) {
-	        	if(data){
-	                var len = data.length;
-	                var txt = "";
-	                var txtTable="<table class=\"table table-striped\"><thead><tr id=\"firstrow\"><th>AUTHOR</th><th>TITLE</th><th>ISBN</th></tr></thead><tbody>";
-	                $("#dialog").html("");
-	                $("#dialog").dialog({ width:650 , top:200 });
-	                if(len > 0){
-	                	 for(var i=0;i<len;i++){
-	                        if(data[i].id && data[i].author &&  data[i].title  && data[i].isbn){
-	                            txt += "<tr><td>"+data[i].author+"</td><td>"+data[i].title+"</td><td>"+data[i].isbn+"</td></tr>";
-	                        }
-	                    }
-	                    if(txt != ""){
-	                    	 $("#dialog").append(txtTable+txt+"</table>").dialog();
-	                    }
-	                }else{
-                   	 $("#dialog").append(txtTable+"<tr><td colspan=\"3\">Books not Lended by the Person</td></tr></tbody></table>").dialog();
-                    }
-	            }
-	        },
-	        error: function(jqXHR, textStatus, errorThrown){
-	            alert('error: ' + textStatus + ': ' + errorThrown);
-	        }
-	});
-}
-</script>
+	<!-- end wrapper -->
 </body>
 </html>
 

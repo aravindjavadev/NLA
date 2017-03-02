@@ -6,7 +6,6 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import com.library.configuration.LibraryConfiguration;
 import com.library.dao.UserDao;
 import com.library.model.Books;
-import com.library.model.User;
 
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;

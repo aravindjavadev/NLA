@@ -137,5 +137,10 @@
 		$("#books-table").tabulator("setData", booksData);
 		//Set initial page
 		$("#books-table").tabulator("setPage", 1);
-		
+		$("#download-csv").click(function(){
+		    $("#person-table").tabulator("download", "csv", "data.csv");
+		});
+		$("#download-csv-books").click(function(){
+		    $("#books-table").tabulator("download", "csv", "data.csv");
+		});
 	</script>

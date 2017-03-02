@@ -67,7 +67,11 @@
 				</div>
 				<!--End Page Header -->
 			</div>
-
+			<div class="row">
+		          <div class="col-lg-12">
+		          <button id="download-csv-books"><i class="fa fa-download" aria-hidden="true"></i>Download CSV</button>
+		          </div>
+       		 </div>
 			<div class="row">
 				<!-- Welcome -->
 				<div class="col-lg-12">

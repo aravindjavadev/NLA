@@ -60,7 +60,7 @@
 
 		<!--  page-wrapper -->
 		<div id="page-wrapper">
-
+		
 			<div class="row">
 				<!-- Page Header -->
 				<div class="col-lg-12">
@@ -68,7 +68,11 @@
 				</div>
 				<!--End Page Header -->
 			</div>
-
+			<div class="row">
+		          <div class="col-lg-12">
+		          <button id="download-csv"><i class="fa fa-download" aria-hidden="true"></i>Download CSV</button>
+		          </div>
+       		 </div>
 			<div class="row">
 				<!-- Welcome -->
 				<div class="col-lg-12">

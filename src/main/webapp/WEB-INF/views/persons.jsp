@@ -77,7 +77,7 @@
 				<!-- Welcome -->
 				<div class="col-lg-12">
 				<div id="person-table"></div>
-			    <div id="dialog" title="Book Details"></div>
+			    <div id="dialog" title="Books Lent"></div>
 			</div>
 				<!--end  Welcome -->
 			</div>
